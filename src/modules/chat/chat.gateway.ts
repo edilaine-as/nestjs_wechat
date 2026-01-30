@@ -67,7 +67,7 @@ export class ChatGateway
         data,
       )
 
-    client
+    this.server
       .to(data.chatId)
       .emit('new-message', message)
   }

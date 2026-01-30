@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { Message } from '../entities/message.entity'
+import { SendMessageDto } from '../../dto/send-message.dto'
 
 @Injectable()
 export class MessageRepository {
@@ -10,14 +11,10 @@ export class MessageRepository {
     private readonly repo: Repository<Message>,
   ) {}
 
-  createAndSave(data: {
-    chatId: string
-    senderId: string
-    content: string
-  }) {
+  createAndSave(data: SendMessageDto) {
     const message = this.repo.create({
       content: data.content,
-      sender: { id: data.senderId },
+      sender: { id: data.userId },
       chat: { id: data.chatId },
     })
 

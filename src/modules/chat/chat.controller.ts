@@ -16,10 +16,11 @@ export class ChatController {
 
   @Post()
   async createChat(
-    @Body('usersIds') userIds: string[],
+    @Body('usersIds')
+    usersIds: string[],
   ) {
     return this.chatService.createChatAndAddParticipants(
-      userIds,
+      usersIds,
     )
   }
 

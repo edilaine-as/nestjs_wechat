@@ -45,24 +45,20 @@ export class ChatService {
 
     const message =
       await this.messageRepository.createAndSave(
-        {
-          chatId: data.chatId,
-          senderId: data.userId,
-          content: data.content,
-        },
+        data,
       )
 
     return message
   }
 
   async createChatAndAddParticipants(
-    userIds: string[],
+    usersIds: string[],
   ) {
     const chat =
       await this.chatRepository.createAndSave()
 
     await Promise.all(
-      userIds.map((userId) =>
+      usersIds.map((userId) =>
         this.participantRepository.createAndSave(
           chat.id,
           userId,
