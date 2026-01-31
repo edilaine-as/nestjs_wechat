@@ -1,5 +1,20 @@
+import {
+  IsDefined,
+  IsNotEmpty,
+  IsString,
+  IsUUID,
+} from 'class-validator'
+
 export class SendMessageDto {
+  @IsUUID('4')
+  @IsDefined()
   chatId: string
+
+  @IsUUID('4')
+  @IsDefined()
   userId: string
+
+  @IsString()
+  @IsNotEmpty()
   content: string
 }
